@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>A Salvo - Presentación</title>
+  
+  <!-- Fuente de Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+  <!-- Librería ScrollReveal para las animaciones -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <style>
+    /* --------------------------------------------------
+       1. ESTILOS GENERALES Y RESET
+    -------------------------------------------------- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
+      background-color: #EDE8D0;
+      color: #333;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* --------------------------------------------------
+       2. PORTADA / HERO (IMAGEN PRINCIPAL DE FONDO)
+    -------------------------------------------------- */
+    .hero-header {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      padding: 20px;
+    }
+
+    .hero-bg-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.38);
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      width: 100%;
+      max-width: 620px;
+    }
+
+    .main-logo-img {
+      width: 100%;
+      height: auto;
+      margin: 0 auto;
+      filter: drop-shadow(0px 12px 24px rgba(0, 0, 0, 0.6));
+    }
+
+    /* --------------------------------------------------
+       3. SECCIÓN PARA LA IMAGEN DEL PATRÓN
+    -------------------------------------------------- */
+    .pattern-section {
+      width: 100%;
+      height: clamp(80px, 15vh, 180px);
+      background-color: #EDE8D0;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-top: 4px solid #0B21E0;
+      border-bottom: 4px solid #0B21E0;
+    }
+
+    .pattern-section img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* --------------------------------------------------
+       4. CONTENEDOR Y CUADRO GRANDE DE FONDO
+    -------------------------------------------------- */
+    .content-wrapper {
+      padding: clamp(30px, 5vw, 80px) 20px;
+      display: flex;
+      justify-content: center;
+      background-color: #EDE8D0;
+    }
+
+    .large-card-bg {
+      background-color: #ffffff;
+      width: 100%;
+      max-width: 1400px;
+      padding: clamp(25px, 4vw, 80px) clamp(15px, 3vw, 40px);
+      border-radius: clamp(16px, 3vw, 28px);
+      box-shadow: 0 20px 40px rgba(11, 33, 224, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(30px, 4vw, 50px);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: clamp(20px, 3vw, 50px);
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* --------------------------------------------------
+       5. TARJETAS E IMÁGENES CON ANIMACIÓN HOVER
+    -------------------------------------------------- */
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                  box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-image-wrapper {
+      position: relative;
+      width: 100%;
+      height: clamp(300px, 45vh, 520px);
+      overflow: hidden;
+    }
+
+    .card-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .card:hover .card-image-wrapper img {
+      transform: scale(1.05);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: #0B21E0;
+      color: #ffffff;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 2;
+    }
+
+    /* --------------------------------------------------
+       6. SECCIONES DE TEXTO INFORMATIVO
+    -------------------------------------------------- */
+    .info-text-container {
+      background-color: #fcfbfa;
+      border-left: 6px solid #0B21E0;
+      border-right: 6px solid #009FE3;
+      padding: clamp(20px, 3vw, 35px) clamp(20px, 4vw, 45px);
+      border-radius: 16px;
+      max-width: 1100px;
+      width: 100%;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+    }
+
+    .info-text-container p {
+      font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+      line-height: 1.6;
+      color: #2b2b2b;
+      font-weight: 400;
+    }
+
+    .highlight-brand {
+      color: #0B21E0;
+      font-weight: 700;
+    }
+
+    .app-text-container {
+      border-left: 6px solid #009FE3;
+      border-right: 6px solid #F9D53E;
+    }
+
+    .app-title {
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      color: #0B21E0;
+      font-weight: 800;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* --------------------------------------------------
+       7. SECCIÓN FRAME DE CELULAR (PLAYSTORE POPUP)
+    -------------------------------------------------- */
+    .playstore-popup-section.custom-bg-image {
+      width: 100%;
+      background: url('imagenes/fondo web.png') center/cover no-repeat;
+      position: relative;
+      padding: clamp(40px, 8vw, 140px) 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup-phone-frame {
+      width: 100%;
+      max-width: 860px;
+      background-color: #121212;
+      border-radius: clamp(30px, 6vw, 75px);
+      padding: clamp(15px, 3vw, 30px) clamp(15px, 3vw, 30px) clamp(25px, 4vw, 45px) clamp(15px, 3vw, 30px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45), inset 0 0 0 2px #333333;
+      position: relative;
+    }
+
+    .popup-notch {
+      width: min(240px, 50%);
+      height: 24px;
+      background-color: #121212;
+      border-radius: 12px;
+      margin: 0 auto 15px auto;
+    }
+
+    .popup-screen {
+      background-color: #181a1b;
+      border-radius: clamp(20px, 4vw, 50px);
+      padding: clamp(20px, 4vw, 50px) clamp(15px, 3vw, 45px);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(20px, 3vw, 40px);
+    }
+
+    .popup-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .popup-app-icon {
+      width: clamp(70px, 12vw, 135px);
+      height: clamp(70px, 12vw, 135px);
+      border-radius: clamp(16px, 3vw, 32px);
+      object-fit: cover;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      flex-shrink: 0;
+    }
+
+    .popup-app-titles h3 {
+      font-size: clamp(1.2rem, 2.5vw, 2.2rem);
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .popup-dev {
+      font-size: clamp(0.85rem, 1.5vw, 1.2rem);
+      color: #009fe3;
+      font-weight: 600;
+    }
+
+    .popup-metrics {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.03);
+      padding: 12px 8px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .popup-metrics div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .m-val {
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .popup-metrics small {
+      font-size: clamp(0.75rem, 1.2vw, 1.05rem);
+      color: #aaaaaa;
+      margin-top: 4px;
+    }
+
+    .popup-divider {
+      width: 1px;
+      height: 35px;
+      background-color: #333333;
+    }
+
+    .popup-cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .popup-feature-card {
+      border-radius: 24px;
+      padding: 20px 18px 0 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+    }
+
+    .popup-card-text h4 {
+      font-size: clamp(1.1rem, 1.8vw, 1.55rem);
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+
+    .popup-card-text p {
+      font-size: clamp(0.85rem, 1.3vw, 1.1rem);
+      color: rgba(255, 255, 255, 0.92);
+      line-height: 1.4;
+      margin-bottom: 16px;
+    }
+
+    .popup-card-img-box {
+      width: 100%;
+      height: clamp(180px, 25vh, 320px);
+      border-radius: 16px 16px 0 0;
+      overflow: hidden;
+      background-color: #ffffff;
+      box-shadow: 0 -5px 20px rgba(0,0,0,0.15);
+    }
+
+    .popup-card-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Ajustes específicos para pantallas móviles pequeñas */
+    @media (max-width: 600px) {
+      .popup-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      .popup-notch {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. PORTADA (HERO SECTION) -->
+  <header class="hero-header">
+    <img src="imagenes/fondo.png" alt="Imagen principal de perritos" class="hero-bg-img" />
+    <div class="hero-overlay"></div>
+    <div class="hero-content reveal-logo">
+      <img src="imagenes/a salvo.png" alt="A Salvo Logo Principal" class="main-logo-img" />
+    </div>
+  </header>
+
+  <!-- 2. FRANJA PARA TU IMAGEN DE PATRÓN -->
+  <div class="pattern-section">
+    <img src="imagenes/patron a asalvo.png" alt="Patrón de Diseño A Salvo" />
+  </div>
+
+  <!-- 3. CONTENEDOR CON CUADRO DE FONDO GRANDE -->
+  <main class="content-wrapper">
+    <section class="large-card-bg reveal-box">
+      
+      <!-- Grid de las 2 Imágenes -->
+      <div class="cards-grid">
+        <!-- Tarjeta 1 -->
+        <article class="card reveal-left">
+          <div class="card-image-wrapper">
+            <div class="card-badge">A SALVO</div>
+            <img src="imagenes/piezas 1 y 2 -01.png" alt="Imagen 1" />
+          </div>
+        </article>
+
+        <!-- Tarjeta 2 -->
+        <article class="card reveal-right">
+          <div class="card-image-wrapper">
+            <div class="card-badge">A SALVO</div>
+            <img src="imagenes/piezas 1 y 2 -02 copy.png" alt="Imagen 2" />
+          </div>
+        </article>
+      </div>
+
+      <!-- Bloque de Texto 1 -->
+      <div class="info-text-container reveal-text-1">
+        <p>
+          <span class="highlight-brand">“A Salvo”</span> busca demostrar que la protección de los animales no depende únicamente de las fundaciones o de las personas que trabajan directamente con ellos, sino que todos podemos formar parte de la solución. A través de la empatía, la tenencia responsable y la participación ciudadana, es posible generar pequeñas acciones que ayuden a mejorar la vida de un animal.
+        </p>
+      </div>
+
+      <!-- Bloque de Texto 2 -->
+      <div class="info-text-container app-text-container reveal-text-2">
+        <h3 class="app-title">📱 Innovación Tecnológica para el Bienestar Animal</h3>
+        <p>
+          Se plantea como una propuesta que busca generar un impacto positivo mediante la unión del diseño, la tecnología y la participación ciudadana. Su importancia radica en crear una herramienta accesible que permita transformar la preocupación por el bienestar animal en acciones concretas, facilitando la comunicación entre las personas que identifican un caso, las fundaciones y quienes tienen la posibilidad de brindar ayuda.
+        </p>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- 4. SECCIÓN CON FRAME DE CELULAR -->
+  <section class="playstore-popup-section custom-bg-image">
+    <div class="popup-phone-frame reveal-popup">
+      <div class="popup-notch"></div>
+      
+      <div class="popup-screen">
+        
+        <div class="popup-header">
+          <img src="imagenes/LOGO.png" alt="Ícono A Salvo" class="popup-app-icon" />
+          <div class="popup-app-titles">
+            <h3>A Salvo: Bienestar y Rescate Animal</h3>
+            <span class="popup-dev">A Salvo Foundation • Protección y Comunidad</span>
+          </div>
+        </div>
+
+        <div class="popup-metrics">
+          <div>
+            <span class="m-val">4,9 ★</span>
+            <small>Calificación</small>
+          </div>
+          <div class="popup-divider"></div>
+          <div>
+            <span class="m-val">+100k</span>
+            <small>Rescatistas</small>
+          </div>
+          <div class="popup-divider"></div>
+          <div>
+            <span class="m-val">Social</span>
+            <small>Categoría</small>
+          </div>
+        </div>
+
+        <div class="popup-cards-container">
+          
+          <div class="popup-feature-card" style="background-color: #0b21e0;">
+            <div class="popup-card-text">
+              <h4>Reporte Ciudadano</h4>
+              <p>Geolocaliza y reporta animales en riesgo de forma rápida y segura.</p>
+            </div>
+            <div class="popup-card-img-box">
+              <img src="imagenes/animales2.png" alt="Reporte Ciudadano en la App" />
+            </div>
+          </div>
+
+          <div class="popup-feature-card" style="background-color: #009fe3;">
+            <div class="popup-card-text">
+              <h4>Red de Fundaciones</h4>
+              <p>Conéctate al instante con refugios y voluntarios dispuestos a brindar ayuda.</p>
+            </div>
+            <div class="popup-card-img-box">
+              <img src="imagenes/animales3.png" alt="Red de Fundaciones en la App" />
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Inicialización de ScrollReveal -->
+  <script>
+    if (typeof ScrollReveal !== 'undefined') {
+      const sr = ScrollReveal();
+      sr.reveal('.reveal-logo', { delay: 200, distance: '30px', origin: 'top' });
+      sr.reveal('.reveal-box', { delay: 200, distance: '30px', origin: 'bottom' });
+      sr.reveal('.reveal-left', { delay: 300, distance: '40px', origin: 'left' });
+      sr.reveal('.reveal-right', { delay: 300, distance: '40px', origin: 'right' });
+      sr.reveal('.reveal-popup', { delay: 200, scale: 0.95 });
+    }
+  </script>
+</body>
+</html>
